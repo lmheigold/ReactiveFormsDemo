@@ -4,10 +4,13 @@
       <label for="email">Email</label>
       <input id="email" type="email" formControlName="email" />
     </div>
+    <div *ngIf="signupForm.get('email')?.errors?.porhibited">
+      <p>This email contains invalid char</p>
+    </div>
     <div
       *ngIf="
-        signupForm.get('email').errors?.required &&
-        signupForm.get('email').touched
+        signupForm.get('email')?.errors?.required &&
+        signupForm.get('email')?.touched
       "
     >
       <p>Please insert your Email!</p>
@@ -16,9 +19,25 @@
       <label for="username">Username</label>
       <input id="username" type="text" formControlName="username" />
     </div>
+    <div
+      *ngIf="
+        signupForm.get('username')?.errors?.required &&
+        signupForm.get('username')?.touched
+      "
+    >
+      <p>Please insert your username!</p>
+    </div>
     <div>
       <label for="password">Password</label>
       <input id="password" type="password" formControlName="password" />
+    </div>
+    <div
+      *ngIf="
+        signupForm.get('password')?.errors?.required &&
+        signupForm.get('password')?.touched
+      "
+    >
+      <p>Please insert your password!</p>
     </div>
     <div>
       <label for="confirmPassword">Confirm Password</label>
@@ -27,6 +46,14 @@
         type="password"
         formControlName="confirmPassword"
       />
+    </div>
+    <div
+      *ngIf="
+        signupForm.get('confirmPassword')?.errors?.required &&
+        signupForm.get('confirmPassword')?.touched
+      "
+    >
+      <p>Please confirm you password!</p>
     </div>
     <button type="submit">Sign Up</button>
   </form>

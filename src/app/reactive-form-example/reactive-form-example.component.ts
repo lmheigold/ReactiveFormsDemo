@@ -3,8 +3,9 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  Validators,
+  Validators
 } from '@angular/forms';
+import { avoidWord } from '../custom-validators/customValidation';
 
 @Component({
   selector: 'app-reactive-form-example',
@@ -13,10 +14,10 @@ import {
 })
 export class ReactiveFormExampleComponent implements OnInit {
   signupForm = this.formBuilder.group({
-    email: ['', [Validators.required]],
-    username: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    confirmPassword: ['', [Validators.required]],
+    email: ['', [Validators.required,avoidWord(RegExp('admin'))]],
+    username: ['', [Validators.required,avoidWord(RegExp('hack'))]],
+    password: ['', [Validators.required,avoidWord(RegExp('hack'))]],
+    confirmPassword: ['', [Validators.required,avoidWord(RegExp('hack'))]],
   });
 
   // signupForm = new FormGroup({
